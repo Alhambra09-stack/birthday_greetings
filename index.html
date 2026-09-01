@@ -3,337 +3,1064 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Happy Birthday!</title>
 
     <style>
+
+        /* ==============================
+           RESET
+        ============================== */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+
+        /* ==============================
+           BODY
+        ============================== */
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #fed6e3 0%, #a8c1ef 100%);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fed6e3 0%,
+                    #a8c1ef 100%
+                );
+
             min-height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             overflow: hidden;
+
             position: relative;
         }
 
-        /* Main Card */
+
+        /* ==============================
+           BIRTHDAY CARD
+        ============================== */
+
         .card {
-            background: rgba(255, 255, 255, 0.85);
+
+            background: rgba(255, 255, 255, 0.88);
+
             padding: 40px;
+
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.12);
+
             backdrop-filter: blur(10px);
+
             text-align: center;
+
             max-width: 450px;
+
             width: 90%;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.5);
+
             z-index: 10;
-            animation: fadeInCard 1s ease-out;
+
+            animation:
+                fadeInCard 1s ease-out;
         }
+
+
+        /* ==============================
+           CAKE ICON
+        ============================== */
 
         .icon {
+
             font-size: 3.5rem;
+
             margin-bottom: 15px;
-            animation: bounce 2s infinite ease-in-out;
+
+            animation:
+                bounce 2s infinite ease-in-out;
         }
+
+
+        /* ==============================
+           TITLE
+        ============================== */
 
         h1 {
+
             color: #ff4a7d;
+
             font-size: 2.5rem;
+
             margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+
+            text-shadow:
+                1px 1px 2px rgba(0, 0, 0, 0.05);
         }
 
-        p {
+
+        /* ==============================
+           PARAGRAPH
+        ============================== */
+
+        .card p {
+
             color: #555;
+
             font-size: 1.1rem;
+
             line-height: 1.6;
+
             margin-bottom: 25px;
         }
 
-        /* Celebrate Button */
+
+        /* ==============================
+           CELEBRATE BUTTON
+        ============================== */
+
         .btn {
+
             display: inline-block;
-            background: linear-gradient(45deg, #ff4a7d, #ff769f);
+
+            background:
+                linear-gradient(
+                    45deg,
+                    #ff4a7d,
+                    #ff769f
+                );
+
             color: white;
+
             padding: 12px 30px;
+
             border-radius: 50px;
+
             text-decoration: none;
+
             font-weight: bold;
+
             letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(255, 74, 125, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
+
+            box-shadow:
+                0 4px 15px
+                rgba(255, 74, 125, 0.3);
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+
             cursor: pointer;
+
             border: none;
+
             font-size: 1.1rem;
         }
 
+
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 74, 125, 0.5);
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 6px 20px
+                rgba(255, 74, 125, 0.5);
         }
+
 
         .btn:active {
-            transform: translateY(-1px);
+
+            transform:
+                translateY(-1px);
         }
 
-        /* Balloons */
+
+        /* ==============================
+           BALLOONS
+        ============================== */
+
         .balloon-container {
+
             position: absolute;
+
             width: 100%;
             height: 100%;
+
             top: 0;
             left: 0;
+
             pointer-events: none;
         }
 
+
         .balloon {
+
             position: absolute;
+
             bottom: -150px;
+
             width: 60px;
             height: 75px;
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-            animation: floatUp 8s infinite linear;
+
+            border-radius:
+                50% 50% 50% 50% /
+                40% 40% 60% 60%;
+
+            animation:
+                floatUp 8s infinite linear;
+
             opacity: 0.7;
         }
 
+
+        /* Balloon Strings */
+
         .balloon::after {
+
             content: "";
+
             position: absolute;
+
             bottom: -12px;
+
             left: 28px;
+
             width: 2px;
             height: 12px;
+
             background-color: #999;
         }
 
+
         .balloon:nth-child(1) {
+
             left: 10%;
+
             background-color: #ff6f91;
+
             animation-duration: 7s;
         }
 
+
         .balloon:nth-child(2) {
+
             left: 25%;
+
             background-color: #ffc75f;
+
             animation-duration: 9s;
+
             animation-delay: 2s;
         }
 
+
         .balloon:nth-child(3) {
+
             left: 45%;
+
             background-color: #845ef7;
+
             animation-duration: 6s;
+
             animation-delay: 1s;
         }
 
+
         .balloon:nth-child(4) {
+
             left: 70%;
+
             background-color: #4ffbdf;
+
             animation-duration: 10s;
+
             animation-delay: 3s;
         }
 
+
         .balloon:nth-child(5) {
+
             left: 85%;
+
             background-color: #ff9671;
+
             animation-duration: 8s;
+
             animation-delay: 0.5s;
         }
 
-        /* Video Popup */
+
+        /* ==============================
+           VIDEO OVERLAY
+        ============================== */
+
         .video-overlay {
+
             position: fixed;
+
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
+
+            background:
+                rgba(0, 0, 0, 0.78);
+
             display: none;
+
             justify-content: center;
+
             align-items: center;
+
             padding: 20px;
+
             z-index: 100;
         }
 
+
         .video-overlay.show {
+
             display: flex;
         }
 
+
+        /* ==============================
+           VIDEO CONTAINER
+        ============================== */
+
         .video-container {
+
             position: relative;
+
             width: 100%;
+
             max-width: 900px;
-            animation: videoPop 0.4s ease-out;
+
+            text-align: center;
+
+            animation:
+                videoPop 0.4s ease-out;
         }
+
+
+        /* ==============================
+           VIDEO
+        ============================== */
 
         .birthday-video {
+
             display: block;
+
             width: 100%;
+
             max-height: 80vh;
+
             border-radius: 15px;
+
             background: #000;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.5);
         }
 
-        /* Close Button */
+
+        /* ==============================
+           CLOSE BUTTON
+        ============================== */
+
         .close-video {
+
             position: absolute;
+
             top: -15px;
+
             right: -15px;
-            width: 40px;
-            height: 40px;
+
+            width: 42px;
+            height: 42px;
+
             border: none;
+
             border-radius: 50%;
+
             background: #ff4a7d;
+
             color: white;
-            font-size: 24px;
+
+            font-size: 25px;
+
             cursor: pointer;
-            z-index: 2;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+            z-index: 20;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.3);
+
+            transition:
+                transform 0.2s;
         }
+
 
         .close-video:hover {
+
+            transform:
+                scale(1.1);
+
             background: #ff285f;
-            transform: scale(1.08);
         }
 
-        /* Animations */
+
+        /* ==============================
+           TULIPS SURPRISE
+        ============================== */
+
+        .tulips-message {
+
+            display: none;
+
+            color: white;
+
+            text-align: center;
+
+            animation:
+                tulipsAppear 1s ease-out;
+        }
+
+
+        .tulips-message.show {
+
+            display: block;
+        }
+
+
+        /* ==============================
+           CUTE CHARACTER
+        ============================== */
+
+        .cute-character {
+
+            position: relative;
+
+            width: 250px;
+
+            height: 260px;
+
+            margin:
+                0 auto 15px;
+
+            animation:
+                characterFloat 2.5s
+                infinite ease-in-out;
+        }
+
+
+        /* HEAD */
+
+        .character-head {
+
+            position: absolute;
+
+            top: 20px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            width: 145px;
+
+            height: 135px;
+
+            background:
+                #ffe0c2;
+
+            border-radius:
+                48% 48% 45% 45%;
+
+            box-shadow:
+                0 8px 20px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* HAIR */
+
+        .character-hair {
+
+            position: absolute;
+
+            top: 8px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            width: 155px;
+
+            height: 80px;
+
+            background:
+                #5b3a29;
+
+            border-radius:
+                70% 70% 30% 30%;
+
+            z-index: 2;
+        }
+
+
+        /* EYES */
+
+        .eye {
+
+            position: absolute;
+
+            top: 72px;
+
+            width: 13px;
+
+            height: 18px;
+
+            background: #333;
+
+            border-radius: 50%;
+        }
+
+
+        .eye.left {
+
+            left: 38px;
+        }
+
+
+        .eye.right {
+
+            right: 38px;
+        }
+
+
+        /* EYE SHINE */
+
+        .eye::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 3px;
+
+            left: 3px;
+
+            width: 4px;
+
+            height: 4px;
+
+            background: white;
+
+            border-radius: 50%;
+        }
+
+
+        /* SMILE */
+
+        .smile {
+
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            width: 35px;
+
+            height: 18px;
+
+            border-bottom:
+                3px solid #d65a75;
+
+            border-radius: 50%;
+        }
+
+
+        /* BODY */
+
+        .character-body {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            width: 110px;
+
+            height: 100px;
+
+            background:
+                #ff8fb1;
+
+            border-radius:
+                50px 50px 20px 20px;
+        }
+
+
+        /* LEFT ARM */
+
+        .arm-left {
+
+            position: absolute;
+
+            bottom: 55px;
+
+            left: 50px;
+
+            width: 75px;
+
+            height: 20px;
+
+            background:
+                #ffe0c2;
+
+            border-radius: 20px;
+
+            transform:
+                rotate(25deg);
+
+            transform-origin:
+                right center;
+
+            z-index: 5;
+        }
+
+
+        /* RIGHT ARM */
+
+        .arm-right {
+
+            position: absolute;
+
+            bottom: 55px;
+
+            right: 50px;
+
+            width: 75px;
+
+            height: 20px;
+
+            background:
+                #ffe0c2;
+
+            border-radius: 20px;
+
+            transform:
+                rotate(-25deg);
+
+            transform-origin:
+                left center;
+
+            z-index: 5;
+        }
+
+
+        /* ==============================
+           TULIPS
+        ============================== */
+
+        .tulips {
+
+            position: absolute;
+
+            left: 50%;
+
+            bottom: 48px;
+
+            transform:
+                translateX(-50%);
+
+            z-index: 10;
+
+            font-size: 3rem;
+
+            white-space: nowrap;
+
+            filter:
+                drop-shadow(
+                    0 5px 5px
+                    rgba(0,0,0,0.15)
+                );
+        }
+
+
+        .tulip {
+
+            display: inline-block;
+
+            animation:
+                tulipSway 1.8s
+                infinite ease-in-out;
+        }
+
+
+        .tulip:nth-child(2) {
+
+            animation-delay:
+                0.2s;
+        }
+
+
+        .tulip:nth-child(3) {
+
+            animation-delay:
+                0.4s;
+        }
+
+
+        .tulip:nth-child(4) {
+
+            animation-delay:
+                0.6s;
+        }
+
+
+        /* ==============================
+           MESSAGE
+        ============================== */
+
+        .tulips-message h2 {
+
+            font-size: 1.8rem;
+
+            color: #ffd6e7;
+
+            margin-bottom: 8px;
+
+            text-shadow:
+                0 2px 8px
+                rgba(0,0,0,0.3);
+        }
+
+
+        .tulips-message p {
+
+            color: white;
+
+            font-size: 1.15rem;
+
+            line-height: 1.5;
+        }
+
+
+        /* ==============================
+           ANIMATIONS
+        ============================== */
+
         @keyframes fadeInCard {
+
             from {
+
                 opacity: 0;
-                transform: translateY(20px);
+
+                transform:
+                    translateY(20px);
             }
 
             to {
+
                 opacity: 1;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
         }
 
+
         @keyframes bounce {
+
             0%, 100% {
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
 
             50% {
-                transform: translateY(-10px);
+
+                transform:
+                    translateY(-10px);
             }
         }
 
+
         @keyframes floatUp {
+
             0% {
-                transform: translateY(0) rotate(0deg);
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
                 opacity: 0;
             }
 
             10% {
+
                 opacity: 0.7;
             }
 
             90% {
+
                 opacity: 0.7;
             }
 
             100% {
-                transform: translateY(-110vh) rotate(10deg);
+
+                transform:
+                    translateY(-110vh)
+                    rotate(10deg);
+
                 opacity: 0;
             }
         }
 
+
         @keyframes videoPop {
+
             from {
+
                 opacity: 0;
-                transform: scale(0.85);
+
+                transform:
+                    scale(0.85);
             }
 
             to {
+
                 opacity: 1;
-                transform: scale(1);
+
+                transform:
+                    scale(1);
             }
         }
 
-        /* Mobile */
+
+        @keyframes tulipsAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(0.5)
+                    translateY(40px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+        }
+
+
+        @keyframes characterFloat {
+
+            0%, 100% {
+
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateY(-8px);
+            }
+        }
+
+
+        @keyframes tulipSway {
+
+            0%, 100% {
+
+                transform:
+                    rotate(-3deg);
+            }
+
+            50% {
+
+                transform:
+                    rotate(3deg)
+                    translateY(-4px);
+            }
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
         @media (max-width: 600px) {
+
             .card {
+
                 padding: 30px 20px;
             }
 
+
             h1 {
+
                 font-size: 2rem;
             }
 
-            p {
+
+            .card p {
+
                 font-size: 1rem;
             }
 
+
             .video-container {
+
                 width: 95%;
             }
 
+
             .close-video {
+
                 top: -10px;
+
                 right: -10px;
             }
+
+
+            .cute-character {
+
+                transform:
+                    scale(0.85);
+            }
+
+
+            .tulips-message h2 {
+
+                font-size: 1.4rem;
+            }
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- Animated Balloons -->
+
+    <!-- =====================================
+         ANIMATED BALLOONS
+    ====================================== -->
+
     <div class="balloon-container">
+
         <div class="balloon"></div>
+
         <div class="balloon"></div>
+
         <div class="balloon"></div>
+
         <div class="balloon"></div>
+
         <div class="balloon"></div>
+
     </div>
 
-    <!-- Birthday Card -->
-    <div class="card">
-        <div class="icon">🎂</div>
 
-        <h1>Happy Birthday!</h1>
+    <!-- =====================================
+         MAIN BIRTHDAY CARD
+    ====================================== -->
+
+    <div class="card" id="birthdayCard">
+
+        <div class="icon">
+            🎂
+        </div>
+
+        <h1>
+            Happy Birthday!
+        </h1>
 
         <p>
-            Wishing you a wonderful day filled with love, laughter,
-            and all your favorite things. May this upcoming year
-            bring you endless joy and success!
+            Wishing you a wonderful day filled with love,
+            laughter, and all your favorite things.
+            May this upcoming year bring you endless
+            joy and success!
         </p>
 
-        <button class="btn" id="celebrateBtn" onclick="playBirthdayVideo()">
+        <button
+            class="btn"
+            id="celebrateBtn"
+            onclick="playBirthdayVideo()">
+
             Celebrate! 🎉
+
         </button>
+
     </div>
 
 
-    <!-- ============================= -->
-    <!-- BIRTHDAY VIDEO / MP4 SECTION -->
-    <!-- ============================= -->
 
-    <div class="video-overlay" id="videoOverlay">
+    <!-- =====================================
+         VIDEO POPUP
+    ====================================== -->
+
+    <div
+        class="video-overlay"
+        id="videoOverlay">
+
 
         <div class="video-container">
 
-            <!-- Close Button -->
-            <button class="close-video" onclick="closeBirthdayVideo()">
+
+            <!-- CLOSE BUTTON -->
+
+            <button
+                class="close-video"
+                onclick="closeBirthdayVideo()">
+
                 ×
+
             </button>
 
-            <!--
-                PALITAN ANG FILE NAME SA MP4 MO.
 
-                Halimbawa:
-                birthday.mp4
 
-                Ilagay ang MP4 sa parehong folder
-                ng HTML file.
-            -->
+            <!-- =================================
+                 YOUR MP4 VIDEO
+
+                 Make sure the file is named:
+
+                 birthday.mp4
+
+                 and is in the SAME folder
+                 as this index.html file.
+            ================================== -->
+
             <video
                 id="birthdayVideo"
                 class="birthday-video"
@@ -341,100 +1068,319 @@
                 playsinline
                 preload="metadata">
 
-                <source src="Messenger_creation_489319142569524.mp4" type="video/mp4">
+                <source
+                    src="./birthday.mp4"
+                    type="video/mp4">
 
-                Your browser does not support HTML5 video.
+                Your browser does not support
+                HTML5 video.
+
             </video>
 
+
+
+            <!-- =================================
+                 TULIPS SURPRISE
+
+                 This is hidden initially.
+                 It appears when the video ends.
+            ================================== -->
+
+            <div
+                class="tulips-message"
+                id="tulipsMessage">
+
+
+                <!-- CUTE CHARACTER -->
+
+                <div class="cute-character">
+
+
+                    <!-- Hair -->
+
+                    <div
+                        class="character-hair">
+                    </div>
+
+
+                    <!-- Head -->
+
+                    <div
+                        class="character-head">
+
+
+                        <!-- Eyes -->
+
+                        <div
+                            class="eye left">
+                        </div>
+
+                        <div
+                            class="eye right">
+                        </div>
+
+
+                        <!-- Smile -->
+
+                        <div
+                            class="smile">
+                        </div>
+
+                    </div>
+
+
+                    <!-- Body -->
+
+                    <div
+                        class="character-body">
+                    </div>
+
+
+                    <!-- Arms -->
+
+                    <div
+                        class="arm-left">
+                    </div>
+
+                    <div
+                        class="arm-right">
+                    </div>
+
+
+                    <!-- Tulips -->
+
+                    <div class="tulips">
+
+                        <span class="tulip">
+                            🌷
+                        </span>
+
+                        <span class="tulip">
+                            🌷
+                        </span>
+
+                        <span class="tulip">
+                            🌷
+                        </span>
+
+                        <span class="tulip">
+                            🌷
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <h2>
+                    🌷 A little surprise for you! 🌷
+                </h2>
+
+                <p>
+                    Happy Birthday! 💕<br>
+                    You deserve all the happiness in the world!
+                </p>
+
+
+            </div>
+
+
         </div>
+
     </div>
 
 
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
     <script>
 
-        const videoOverlay = document.getElementById("videoOverlay");
-        const birthdayVideo = document.getElementById("birthdayVideo");
-        const celebrateBtn = document.getElementById("celebrateBtn");
+
+        const videoOverlay =
+            document.getElementById("videoOverlay");
 
 
-        // ==========================
-        // PLAY VIDEO
-        // ==========================
+        const birthdayVideo =
+            document.getElementById("birthdayVideo");
+
+
+        const celebrateBtn =
+            document.getElementById("celebrateBtn");
+
+
+        const tulipsMessage =
+            document.getElementById("tulipsMessage");
+
+
+
+        /* =====================================
+           PLAY VIDEO
+        ====================================== */
 
         function playBirthdayVideo() {
 
-            // Show video popup
-            videoOverlay.classList.add("show");
 
-            // Play the MP4
-            birthdayVideo.currentTime = 0;
+            // Hide tulips in case
+            // user plays the video again
 
-            birthdayVideo.play()
+            tulipsMessage
+                .classList
+                .remove("show");
+
+
+            birthdayVideo.style.display =
+                "block";
+
+
+            // Show popup
+
+            videoOverlay
+                .classList
+                .add("show");
+
+
+            // Start from beginning
+
+            birthdayVideo.currentTime =
+                0;
+
+
+            // Play video
+
+            birthdayVideo
+                .play()
                 .then(function () {
 
-                    celebrateBtn.innerText = "Playing 🎬";
+                    celebrateBtn.innerText =
+                        "Playing 🎬";
 
                 })
                 .catch(function (error) {
 
-                    console.log("Video playback failed:", error);
+                    console.log(
+                        "Video playback failed:",
+                        error
+                    );
 
                 });
+
         }
 
 
-        // ==========================
-        // CLOSE VIDEO
-        // ==========================
+
+        /* =====================================
+           VIDEO FINISHED
+        ====================================== */
+
+        birthdayVideo.addEventListener(
+            "ended",
+            function () {
+
+
+                // Hide video
+
+                birthdayVideo.style.display =
+                    "none";
+
+
+                // Show tulips character
+
+                tulipsMessage
+                    .classList
+                    .add("show");
+
+
+                // Change button text
+
+                celebrateBtn.innerText =
+                    "Celebrate Again! 🎉";
+
+            }
+        );
+
+
+
+        /* =====================================
+           CLOSE VIDEO
+        ====================================== */
 
         function closeBirthdayVideo() {
 
+
             birthdayVideo.pause();
 
-            birthdayVideo.currentTime = 0;
 
-            videoOverlay.classList.remove("show");
+            birthdayVideo.currentTime =
+                0;
 
-            celebrateBtn.innerText = "Celebrate! 🎉";
+
+            birthdayVideo.style.display =
+                "block";
+
+
+            tulipsMessage
+                .classList
+                .remove("show");
+
+
+            videoOverlay
+                .classList
+                .remove("show");
+
+
+            celebrateBtn.innerText =
+                "Celebrate! 🎉";
+
         }
 
 
-        // ==========================
-        // CLOSE WHEN CLICKING
-        // OUTSIDE THE VIDEO
-        // ==========================
 
-        videoOverlay.addEventListener("click", function(event) {
+        /* =====================================
+           CLICK OUTSIDE VIDEO
+        ====================================== */
 
-            if (event.target === videoOverlay) {
-                closeBirthdayVideo();
+        videoOverlay.addEventListener(
+            "click",
+            function(event) {
+
+
+                if (
+                    event.target === videoOverlay
+                ) {
+
+                    closeBirthdayVideo();
+
+                }
+
             }
+        );
 
-        });
 
 
-        // ==========================
-        // ESC KEY TO CLOSE
-        // ==========================
+        /* =====================================
+           ESC KEY
+        ====================================== */
 
-        document.addEventListener("keydown", function(event) {
+        document.addEventListener(
+            "keydown",
+            function(event) {
 
-            if (event.key === "Escape") {
-                closeBirthdayVideo();
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeBirthdayVideo();
+
+                }
+
             }
-
-        });
-
-
-        // ==========================
-        // WHEN VIDEO ENDS
-        // ==========================
-
-        birthdayVideo.addEventListener("ended", function() {
-
-            celebrateBtn.innerText = "Celebrate Again! 🎉";
-
-        });
+        );
 
     </script>
 
