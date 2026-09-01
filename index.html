@@ -6,1383 +6,1470 @@
 
     <title>Happy Birthday!</title>
 
-    <style>
+<style>
 
-        /* ==============================
-           RESET
-        ============================== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+        background:
+            linear-gradient(
+                135deg,
+                #fed6e3 0%,
+                #a8c1ef 100%
+            );
 
-        /* ==============================
-           BODY
-        ============================== */
+        min-height: 100vh;
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #fed6e3 0%,
-                    #a8c1ef 100%
-                );
+        overflow: hidden;
 
-            min-height: 100vh;
+        position: relative;
+    }
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    /* ==============================
+       BIRTHDAY CARD
+    ============================== */
 
-            overflow: hidden;
+    .card {
+        background: rgba(255, 255, 255, 0.88);
 
-            position: relative;
-        }
+        padding: 40px;
 
+        border-radius: 20px;
 
-        /* ==============================
-           BIRTHDAY CARD
-        ============================== */
+        box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.12);
 
-        .card {
+        backdrop-filter: blur(10px);
 
-            background: rgba(255, 255, 255, 0.88);
+        text-align: center;
 
-            padding: 40px;
+        max-width: 500px;
 
-            border-radius: 20px;
+        width: 90%;
 
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.12);
+        border:
+            1px solid rgba(255, 255, 255, 0.5);
 
-            backdrop-filter: blur(10px);
+        z-index: 10;
 
-            text-align: center;
+        animation:
+            fadeInCard 1s ease-out;
+    }
 
-            max-width: 450px;
+    /* ==============================
+       CAKE ICON
+    ============================== */
 
-            width: 90%;
+    .icon {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
 
-            border:
-                1px solid rgba(255, 255, 255, 0.5);
+        animation:
+            bounce 2s infinite ease-in-out;
+    }
 
-            z-index: 10;
+    /* ==============================
+       TITLE
+    ============================== */
 
-            animation:
-                fadeInCard 1s ease-out;
-        }
+    h1 {
+        color: #ff4a7d;
 
+        font-size: 2.5rem;
 
-        /* ==============================
-           CAKE ICON
-        ============================== */
+        margin-bottom: 15px;
 
-        .icon {
+        text-shadow:
+            1px 1px 2px rgba(0, 0, 0, 0.05);
+    }
 
-            font-size: 3.5rem;
+    /* ==============================
+       PARAGRAPH
+    ============================== */
 
-            margin-bottom: 15px;
+    .card p {
+        color: #555;
 
-            animation:
-                bounce 2s infinite ease-in-out;
-        }
+        font-size: 1.1rem;
 
+        line-height: 1.6;
 
-        /* ==============================
-           TITLE
-        ============================== */
+        margin-bottom: 20px;
+    }
 
-        h1 {
+    /* ==============================
+       COUNTDOWN
+    ============================== */
 
-            color: #ff4a7d;
+    .countdown-title {
+        color: #777;
 
-            font-size: 2.5rem;
+        font-size: 0.95rem;
 
-            margin-bottom: 15px;
+        margin-bottom: 10px;
+    }
 
-            text-shadow:
-                1px 1px 2px rgba(0, 0, 0, 0.05);
-        }
+    .countdown {
+        display: flex;
 
+        justify-content: center;
 
-        /* ==============================
-           PARAGRAPH
-        ============================== */
+        gap: 10px;
 
-        .card p {
+        margin-bottom: 25px;
+    }
 
-            color: #555;
+    .time-box {
+        background:
+            linear-gradient(
+                135deg,
+                #ff4a7d,
+                #ff769f
+            );
 
-            font-size: 1.1rem;
+        color: white;
 
-            line-height: 1.6;
+        min-width: 65px;
 
-            margin-bottom: 25px;
-        }
+        padding: 10px 6px;
 
+        border-radius: 12px;
 
-        /* ==============================
-           CELEBRATE BUTTON
-        ============================== */
+        box-shadow:
+            0 5px 15px
+            rgba(255, 74, 125, 0.25);
+    }
 
-        .btn {
+    .time-number {
+        display: block;
 
-            display: inline-block;
+        font-size: 1.5rem;
 
-            background:
-                linear-gradient(
-                    45deg,
-                    #ff4a7d,
-                    #ff769f
-                );
+        font-weight: bold;
+    }
 
-            color: white;
+    .time-label {
+        display: block;
 
-            padding: 12px 30px;
+        font-size: 0.65rem;
 
-            border-radius: 50px;
+        margin-top: 3px;
 
-            text-decoration: none;
+        opacity: 0.9;
 
-            font-weight: bold;
+        letter-spacing: 0.5px;
+    }
 
-            letter-spacing: 1px;
+    .unlock-message {
+        display: none;
 
-            box-shadow:
-                0 4px 15px
-                rgba(255, 74, 125, 0.3);
+        color: #ff4a7d;
 
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s;
+        font-weight: bold;
 
-            cursor: pointer;
+        font-size: 1rem;
 
-            border: none;
+        margin-bottom: 20px;
+    }
 
-            font-size: 1.1rem;
-        }
+    .unlock-message.show {
+        display: block;
+    }
 
+    /* ==============================
+       BUTTON
+    ============================== */
 
-        .btn:hover {
+    .btn {
+        display: inline-block;
+
+        background:
+            linear-gradient(
+                45deg,
+                #ff4a7d,
+                #ff769f
+            );
+
+        color: white;
+
+        padding: 12px 30px;
+
+        border-radius: 50px;
+
+        text-decoration: none;
+
+        font-weight: bold;
+
+        letter-spacing: 1px;
+
+        box-shadow:
+            0 4px 15px
+            rgba(255, 74, 125, 0.3);
+
+        transition:
+            transform 0.2s,
+            box-shadow 0.2s;
+
+        cursor: pointer;
+
+        border: none;
+
+        font-size: 1.1rem;
+    }
+
+    .btn:hover:not(:disabled) {
+        transform:
+            translateY(-3px);
+
+        box-shadow:
+            0 6px 20px
+            rgba(255, 74, 125, 0.5);
+    }
+
+    .btn:active:not(:disabled) {
+        transform:
+            translateY(-1px);
+    }
+
+    /* LOCKED BUTTON */
+
+    .btn:disabled {
+        background:
+            linear-gradient(
+                45deg,
+                #bdbdbd,
+                #d5d5d5
+            );
+
+        color: #f5f5f5;
+
+        cursor: not-allowed;
+
+        box-shadow: none;
+
+        opacity: 0.85;
+    }
+
+    /* ==============================
+       BALLOONS
+    ============================== */
+
+    .balloon-container {
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+
+        top: 0;
+        left: 0;
+
+        pointer-events: none;
+    }
+
+    .balloon {
+        position: absolute;
+
+        bottom: -150px;
+
+        width: 60px;
+        height: 75px;
+
+        border-radius:
+            50% 50% 50% 50% /
+            40% 40% 60% 60%;
+
+        animation:
+            floatUp 8s infinite linear;
+
+        opacity: 0.7;
+    }
+
+    .balloon::after {
+        content: "";
+
+        position: absolute;
+
+        bottom: -12px;
+
+        left: 28px;
+
+        width: 2px;
+        height: 12px;
+
+        background-color: #999;
+    }
+
+    .balloon:nth-child(1) {
+        left: 10%;
+        background-color: #ff6f91;
+        animation-duration: 7s;
+    }
+
+    .balloon:nth-child(2) {
+        left: 25%;
+        background-color: #ffc75f;
+        animation-duration: 9s;
+        animation-delay: 2s;
+    }
+
+    .balloon:nth-child(3) {
+        left: 45%;
+        background-color: #845ef7;
+        animation-duration: 6s;
+        animation-delay: 1s;
+    }
+
+    .balloon:nth-child(4) {
+        left: 70%;
+        background-color: #4ffbdf;
+        animation-duration: 10s;
+        animation-delay: 3s;
+    }
+
+    .balloon:nth-child(5) {
+        left: 85%;
+        background-color: #ff9671;
+        animation-duration: 8s;
+        animation-delay: 0.5s;
+    }
+
+    /* ==============================
+       VIDEO OVERLAY
+    ============================== */
+
+    .video-overlay {
+        position: fixed;
+
+        inset: 0;
+
+        background:
+            rgba(0, 0, 0, 0.78);
+
+        display: none;
+
+        justify-content: center;
+        align-items: center;
+
+        padding: 20px;
+
+        z-index: 100;
+    }
+
+    .video-overlay.show {
+        display: flex;
+    }
+
+    .video-container {
+        position: relative;
+
+        width: 100%;
+
+        max-width: 900px;
+
+        text-align: center;
+
+        animation:
+            videoPop 0.4s ease-out;
+    }
+
+    .birthday-video {
+        display: block;
+
+        width: 100%;
+
+        max-height: 80vh;
+
+        border-radius: 15px;
+
+        background: #000;
+
+        box-shadow:
+            0 20px 50px
+            rgba(0, 0, 0, 0.5);
+    }
+
+    /* ==============================
+       CLOSE BUTTON
+    ============================== */
+
+    .close-video {
+        position: absolute;
+
+        top: -15px;
+        right: -15px;
+
+        width: 42px;
+        height: 42px;
+
+        border: none;
+
+        border-radius: 50%;
+
+        background: #ff4a7d;
+
+        color: white;
+
+        font-size: 25px;
+
+        cursor: pointer;
+
+        z-index: 20;
+
+        box-shadow:
+            0 4px 15px
+            rgba(0, 0, 0, 0.3);
+
+        transition:
+            transform 0.2s;
+    }
+
+    .close-video:hover {
+        transform:
+            scale(1.1);
+
+        background: #ff285f;
+    }
+
+    /* ==============================
+       TULIPS SURPRISE
+    ============================== */
+
+    .tulips-message {
+        display: none;
+
+        color: white;
+
+        text-align: center;
+
+        animation:
+            tulipsAppear 1s ease-out;
+    }
+
+    .tulips-message.show {
+        display: block;
+    }
+
+    /* ==============================
+       CUTE CHARACTER
+    ============================== */
+
+    .cute-character {
+        position: relative;
+
+        width: 250px;
+        height: 260px;
+
+        margin:
+            0 auto 15px;
+
+        animation:
+            characterFloat 2.5s
+            infinite ease-in-out;
+    }
+
+    .character-head {
+        position: absolute;
+
+        top: 20px;
+        left: 50%;
+
+        transform:
+            translateX(-50%);
+
+        width: 145px;
+        height: 135px;
+
+        background:
+            #ffe0c2;
+
+        border-radius:
+            48% 48% 45% 45%;
+
+        box-shadow:
+            0 8px 20px
+            rgba(0, 0, 0, 0.15);
+    }
+
+    .character-hair {
+        position: absolute;
+
+        top: 8px;
+        left: 50%;
+
+        transform:
+            translateX(-50%);
+
+        width: 155px;
+        height: 80px;
+
+        background:
+            #5b3a29;
+
+        border-radius:
+            70% 70% 30% 30%;
+
+        z-index: 2;
+    }
+
+    .eye {
+        position: absolute;
+
+        top: 72px;
+
+        width: 13px;
+        height: 18px;
+
+        background: #333;
+
+        border-radius: 50%;
+    }
+
+    .eye.left {
+        left: 38px;
+    }
+
+    .eye.right {
+        right: 38px;
+    }
+
+    .eye::after {
+        content: "";
+
+        position: absolute;
+
+        top: 3px;
+        left: 3px;
+
+        width: 4px;
+        height: 4px;
+
+        background: white;
+
+        border-radius: 50%;
+    }
+
+    .smile {
+        position: absolute;
+
+        bottom: 25px;
+        left: 50%;
+
+        transform:
+            translateX(-50%);
+
+        width: 35px;
+        height: 18px;
+
+        border-bottom:
+            3px solid #d65a75;
+
+        border-radius: 50%;
+    }
+
+    .character-body {
+        position: absolute;
+
+        bottom: 0;
+        left: 50%;
+
+        transform:
+            translateX(-50%);
+
+        width: 110px;
+        height: 100px;
+
+        background:
+            #ff8fb1;
+
+        border-radius:
+            50px 50px 20px 20px;
+    }
+
+    .arm-left {
+        position: absolute;
+
+        bottom: 55px;
+        left: 50px;
+
+        width: 75px;
+        height: 20px;
+
+        background:
+            #ffe0c2;
+
+        border-radius: 20px;
+
+        transform:
+            rotate(25deg);
+
+        transform-origin:
+            right center;
+
+        z-index: 5;
+    }
+
+    .arm-right {
+        position: absolute;
+
+        bottom: 55px;
+        right: 50px;
+
+        width: 75px;
+        height: 20px;
+
+        background:
+            #ffe0c2;
+
+        border-radius: 20px;
+
+        transform:
+            rotate(-25deg);
+
+        transform-origin:
+            left center;
+
+        z-index: 5;
+    }
+
+    /* ==============================
+       TULIPS
+    ============================== */
+
+    .tulips {
+        position: absolute;
+
+        left: 50%;
+        bottom: 48px;
+
+        transform:
+            translateX(-50%);
+
+        z-index: 10;
+
+        font-size: 3rem;
+
+        white-space: nowrap;
+
+        filter:
+            drop-shadow(
+                0 5px 5px
+                rgba(0,0,0,0.15)
+            );
+    }
+
+    .tulip {
+        display: inline-block;
+
+        animation:
+            tulipSway 1.8s
+            infinite ease-in-out;
+    }
+
+    .tulip:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .tulip:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    .tulip:nth-child(4) {
+        animation-delay: 0.6s;
+    }
+
+    .tulips-message h2 {
+        font-size: 1.8rem;
+
+        color: #ffd6e7;
+
+        margin-bottom: 8px;
+
+        text-shadow:
+            0 2px 8px
+            rgba(0,0,0,0.3);
+    }
+
+    .tulips-message p {
+        color: white;
+
+        font-size: 1.15rem;
+
+        line-height: 1.5;
+    }
+
+    /* ==============================
+       ANIMATIONS
+    ============================== */
+
+    @keyframes fadeInCard {
+        from {
+            opacity: 0;
 
             transform:
-                translateY(-3px);
-
-            box-shadow:
-                0 6px 20px
-                rgba(255, 74, 125, 0.5);
+                translateY(20px);
         }
 
-
-        .btn:active {
+        to {
+            opacity: 1;
 
             transform:
-                translateY(-1px);
+                translateY(0);
+        }
+    }
+
+    @keyframes bounce {
+        0%, 100% {
+            transform:
+                translateY(0);
         }
 
+        50% {
+            transform:
+                translateY(-10px);
+        }
+    }
 
-        /* ==============================
-           BALLOONS
-        ============================== */
+    @keyframes floatUp {
+        0% {
+            transform:
+                translateY(0)
+                rotate(0deg);
 
-        .balloon-container {
-
-            position: absolute;
-
-            width: 100%;
-            height: 100%;
-
-            top: 0;
-            left: 0;
-
-            pointer-events: none;
+            opacity: 0;
         }
 
-
-        .balloon {
-
-            position: absolute;
-
-            bottom: -150px;
-
-            width: 60px;
-            height: 75px;
-
-            border-radius:
-                50% 50% 50% 50% /
-                40% 40% 60% 60%;
-
-            animation:
-                floatUp 8s infinite linear;
-
+        10% {
             opacity: 0.7;
         }
 
-
-        /* Balloon Strings */
-
-        .balloon::after {
-
-            content: "";
-
-            position: absolute;
-
-            bottom: -12px;
-
-            left: 28px;
-
-            width: 2px;
-            height: 12px;
-
-            background-color: #999;
+        90% {
+            opacity: 0.7;
         }
 
+        100% {
+            transform:
+                translateY(-110vh)
+                rotate(10deg);
 
-        .balloon:nth-child(1) {
+            opacity: 0;
+        }
+    }
 
-            left: 10%;
+    @keyframes videoPop {
+        from {
+            opacity: 0;
 
-            background-color: #ff6f91;
-
-            animation-duration: 7s;
+            transform:
+                scale(0.85);
         }
 
+        to {
+            opacity: 1;
 
-        .balloon:nth-child(2) {
+            transform:
+                scale(1);
+        }
+    }
 
-            left: 25%;
+    @keyframes tulipsAppear {
+        from {
+            opacity: 0;
 
-            background-color: #ffc75f;
-
-            animation-duration: 9s;
-
-            animation-delay: 2s;
+            transform:
+                scale(0.5)
+                translateY(40px);
         }
 
+        to {
+            opacity: 1;
 
-        .balloon:nth-child(3) {
+            transform:
+                scale(1)
+                translateY(0);
+        }
+    }
 
-            left: 45%;
-
-            background-color: #845ef7;
-
-            animation-duration: 6s;
-
-            animation-delay: 1s;
+    @keyframes characterFloat {
+        0%, 100% {
+            transform:
+                translateY(0);
         }
 
+        50% {
+            transform:
+                translateY(-8px);
+        }
+    }
 
-        .balloon:nth-child(4) {
-
-            left: 70%;
-
-            background-color: #4ffbdf;
-
-            animation-duration: 10s;
-
-            animation-delay: 3s;
+    @keyframes tulipSway {
+        0%, 100% {
+            transform:
+                rotate(-3deg);
         }
 
+        50% {
+            transform:
+                rotate(3deg)
+                translateY(-4px);
+        }
+    }
 
-        .balloon:nth-child(5) {
+    /* ==============================
+       MOBILE
+    ============================== */
 
-            left: 85%;
+    @media (max-width: 600px) {
 
-            background-color: #ff9671;
-
-            animation-duration: 8s;
-
-            animation-delay: 0.5s;
+        .card {
+            padding: 30px 20px;
         }
 
-
-        /* ==============================
-           VIDEO OVERLAY
-        ============================== */
-
-        .video-overlay {
-
-            position: fixed;
-
-            inset: 0;
-
-            background:
-                rgba(0, 0, 0, 0.78);
-
-            display: none;
-
-            justify-content: center;
-
-            align-items: center;
-
-            padding: 20px;
-
-            z-index: 100;
+        h1 {
+            font-size: 2rem;
         }
 
-
-        .video-overlay.show {
-
-            display: flex;
+        .card p {
+            font-size: 1rem;
         }
 
+        .countdown {
+            gap: 5px;
+        }
 
-        /* ==============================
-           VIDEO CONTAINER
-        ============================== */
+        .time-box {
+            min-width: 58px;
+
+            padding:
+                8px 4px;
+        }
+
+        .time-number {
+            font-size: 1.25rem;
+        }
+
+        .time-label {
+            font-size: 0.55rem;
+        }
 
         .video-container {
-
-            position: relative;
-
-            width: 100%;
-
-            max-width: 900px;
-
-            text-align: center;
-
-            animation:
-                videoPop 0.4s ease-out;
+            width: 95%;
         }
-
-
-        /* ==============================
-           VIDEO
-        ============================== */
-
-        .birthday-video {
-
-            display: block;
-
-            width: 100%;
-
-            max-height: 80vh;
-
-            border-radius: 15px;
-
-            background: #000;
-
-            box-shadow:
-                0 20px 50px
-                rgba(0, 0, 0, 0.5);
-        }
-
-
-        /* ==============================
-           CLOSE BUTTON
-        ============================== */
 
         .close-video {
-
-            position: absolute;
-
-            top: -15px;
-
-            right: -15px;
-
-            width: 42px;
-            height: 42px;
-
-            border: none;
-
-            border-radius: 50%;
-
-            background: #ff4a7d;
-
-            color: white;
-
-            font-size: 25px;
-
-            cursor: pointer;
-
-            z-index: 20;
-
-            box-shadow:
-                0 4px 15px
-                rgba(0, 0, 0, 0.3);
-
-            transition:
-                transform 0.2s;
+            top: -10px;
+            right: -10px;
         }
-
-
-        .close-video:hover {
-
-            transform:
-                scale(1.1);
-
-            background: #ff285f;
-        }
-
-
-        /* ==============================
-           TULIPS SURPRISE
-        ============================== */
-
-        .tulips-message {
-
-            display: none;
-
-            color: white;
-
-            text-align: center;
-
-            animation:
-                tulipsAppear 1s ease-out;
-        }
-
-
-        .tulips-message.show {
-
-            display: block;
-        }
-
-
-        /* ==============================
-           CUTE CHARACTER
-        ============================== */
 
         .cute-character {
-
-            position: relative;
-
-            width: 250px;
-
-            height: 260px;
-
-            margin:
-                0 auto 15px;
-
-            animation:
-                characterFloat 2.5s
-                infinite ease-in-out;
-        }
-
-
-        /* HEAD */
-
-        .character-head {
-
-            position: absolute;
-
-            top: 20px;
-
-            left: 50%;
-
             transform:
-                translateX(-50%);
-
-            width: 145px;
-
-            height: 135px;
-
-            background:
-                #ffe0c2;
-
-            border-radius:
-                48% 48% 45% 45%;
-
-            box-shadow:
-                0 8px 20px
-                rgba(0, 0, 0, 0.15);
+                scale(0.85);
         }
-
-
-        /* HAIR */
-
-        .character-hair {
-
-            position: absolute;
-
-            top: 8px;
-
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-
-            width: 155px;
-
-            height: 80px;
-
-            background:
-                #5b3a29;
-
-            border-radius:
-                70% 70% 30% 30%;
-
-            z-index: 2;
-        }
-
-
-        /* EYES */
-
-        .eye {
-
-            position: absolute;
-
-            top: 72px;
-
-            width: 13px;
-
-            height: 18px;
-
-            background: #333;
-
-            border-radius: 50%;
-        }
-
-
-        .eye.left {
-
-            left: 38px;
-        }
-
-
-        .eye.right {
-
-            right: 38px;
-        }
-
-
-        /* EYE SHINE */
-
-        .eye::after {
-
-            content: "";
-
-            position: absolute;
-
-            top: 3px;
-
-            left: 3px;
-
-            width: 4px;
-
-            height: 4px;
-
-            background: white;
-
-            border-radius: 50%;
-        }
-
-
-        /* SMILE */
-
-        .smile {
-
-            position: absolute;
-
-            bottom: 25px;
-
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-
-            width: 35px;
-
-            height: 18px;
-
-            border-bottom:
-                3px solid #d65a75;
-
-            border-radius: 50%;
-        }
-
-
-        /* BODY */
-
-        .character-body {
-
-            position: absolute;
-
-            bottom: 0;
-
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-
-            width: 110px;
-
-            height: 100px;
-
-            background:
-                #ff8fb1;
-
-            border-radius:
-                50px 50px 20px 20px;
-        }
-
-
-        /* LEFT ARM */
-
-        .arm-left {
-
-            position: absolute;
-
-            bottom: 55px;
-
-            left: 50px;
-
-            width: 75px;
-
-            height: 20px;
-
-            background:
-                #ffe0c2;
-
-            border-radius: 20px;
-
-            transform:
-                rotate(25deg);
-
-            transform-origin:
-                right center;
-
-            z-index: 5;
-        }
-
-
-        /* RIGHT ARM */
-
-        .arm-right {
-
-            position: absolute;
-
-            bottom: 55px;
-
-            right: 50px;
-
-            width: 75px;
-
-            height: 20px;
-
-            background:
-                #ffe0c2;
-
-            border-radius: 20px;
-
-            transform:
-                rotate(-25deg);
-
-            transform-origin:
-                left center;
-
-            z-index: 5;
-        }
-
-
-        /* ==============================
-           TULIPS
-        ============================== */
-
-        .tulips {
-
-            position: absolute;
-
-            left: 50%;
-
-            bottom: 48px;
-
-            transform:
-                translateX(-50%);
-
-            z-index: 10;
-
-            font-size: 3rem;
-
-            white-space: nowrap;
-
-            filter:
-                drop-shadow(
-                    0 5px 5px
-                    rgba(0,0,0,0.15)
-                );
-        }
-
-
-        .tulip {
-
-            display: inline-block;
-
-            animation:
-                tulipSway 1.8s
-                infinite ease-in-out;
-        }
-
-
-        .tulip:nth-child(2) {
-
-            animation-delay:
-                0.2s;
-        }
-
-
-        .tulip:nth-child(3) {
-
-            animation-delay:
-                0.4s;
-        }
-
-
-        .tulip:nth-child(4) {
-
-            animation-delay:
-                0.6s;
-        }
-
-
-        /* ==============================
-           MESSAGE
-        ============================== */
 
         .tulips-message h2 {
-
-            font-size: 1.8rem;
-
-            color: #ffd6e7;
-
-            margin-bottom: 8px;
-
-            text-shadow:
-                0 2px 8px
-                rgba(0,0,0,0.3);
+            font-size: 1.4rem;
         }
+    }
 
+</style>
 
-        .tulips-message p {
+</head> <body>
+<!-- =====================================
+     ANIMATED BALLOONS
+====================================== -->
 
-            color: white;
+<div class="balloon-container">
 
-            font-size: 1.15rem;
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
 
-            line-height: 1.5;
-        }
+</div>
 
 
-        /* ==============================
-           ANIMATIONS
-        ============================== */
+<!-- =====================================
+     MAIN BIRTHDAY CARD
+====================================== -->
 
-        @keyframes fadeInCard {
+<div class="card" id="birthdayCard">
 
-            from {
+    <div class="icon">
+        🎂
+    </div>
 
-                opacity: 0;
+    <h1>
+        Happy Birthday!
+    </h1>
 
-                transform:
-                    translateY(20px);
-            }
+    <p>
+        Wishing you a wonderful day filled with love,
+        laughter, and all your favorite things.
+        May this upcoming year bring you endless
+        joy and success!
+    </p>
 
-            to {
 
-                opacity: 1;
+    <!-- COUNTDOWN -->
 
-                transform:
-                    translateY(0);
-            }
-        }
+    <div class="countdown-title" id="countdownTitle">
+        🎁 Your surprise unlocks in...
+    </div>
 
 
-        @keyframes bounce {
+    <div class="countdown" id="countdown">
 
-            0%, 100% {
+        <div class="time-box">
+            <span
+                class="time-number"
+                id="days">
+                00
+            </span>
 
-                transform:
-                    translateY(0);
-            }
+            <span class="time-label">
+                DAYS
+            </span>
+        </div>
 
-            50% {
 
-                transform:
-                    translateY(-10px);
-            }
-        }
+        <div class="time-box">
+            <span
+                class="time-number"
+                id="hours">
+                00
+            </span>
 
+            <span class="time-label">
+                HOURS
+            </span>
+        </div>
 
-        @keyframes floatUp {
 
-            0% {
+        <div class="time-box">
+            <span
+                class="time-number"
+                id="minutes">
+                00
+            </span>
 
-                transform:
-                    translateY(0)
-                    rotate(0deg);
+            <span class="time-label">
+                MINUTES
+            </span>
+        </div>
 
-                opacity: 0;
-            }
 
-            10% {
+        <div class="time-box">
+            <span
+                class="time-number"
+                id="seconds">
+                00
+            </span>
 
-                opacity: 0.7;
-            }
-
-            90% {
-
-                opacity: 0.7;
-            }
-
-            100% {
-
-                transform:
-                    translateY(-110vh)
-                    rotate(10deg);
-
-                opacity: 0;
-            }
-        }
-
-
-        @keyframes videoPop {
-
-            from {
-
-                opacity: 0;
-
-                transform:
-                    scale(0.85);
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform:
-                    scale(1);
-            }
-        }
-
-
-        @keyframes tulipsAppear {
-
-            from {
-
-                opacity: 0;
-
-                transform:
-                    scale(0.5)
-                    translateY(40px);
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform:
-                    scale(1)
-                    translateY(0);
-            }
-        }
-
-
-        @keyframes characterFloat {
-
-            0%, 100% {
-
-                transform:
-                    translateY(0);
-            }
-
-            50% {
-
-                transform:
-                    translateY(-8px);
-            }
-        }
-
-
-        @keyframes tulipSway {
-
-            0%, 100% {
-
-                transform:
-                    rotate(-3deg);
-            }
-
-            50% {
-
-                transform:
-                    rotate(3deg)
-                    translateY(-4px);
-            }
-        }
-
-
-        /* ==============================
-           MOBILE
-        ============================== */
-
-        @media (max-width: 600px) {
-
-            .card {
-
-                padding: 30px 20px;
-            }
-
-
-            h1 {
-
-                font-size: 2rem;
-            }
-
-
-            .card p {
-
-                font-size: 1rem;
-            }
-
-
-            .video-container {
-
-                width: 95%;
-            }
-
-
-            .close-video {
-
-                top: -10px;
-
-                right: -10px;
-            }
-
-
-            .cute-character {
-
-                transform:
-                    scale(0.85);
-            }
-
-
-            .tulips-message h2 {
-
-                font-size: 1.4rem;
-            }
-        }
-
-    </style>
-</head>
-
-
-<body>
-
-
-    <!-- =====================================
-         ANIMATED BALLOONS
-    ====================================== -->
-
-    <div class="balloon-container">
-
-        <div class="balloon"></div>
-
-        <div class="balloon"></div>
-
-        <div class="balloon"></div>
-
-        <div class="balloon"></div>
-
-        <div class="balloon"></div>
+            <span class="time-label">
+                SECONDS
+            </span>
+        </div>
 
     </div>
 
 
-    <!-- =====================================
-         MAIN BIRTHDAY CARD
-    ====================================== -->
+    <!-- UNLOCK MESSAGE -->
 
-    <div class="card" id="birthdayCard">
+    <div
+        class="unlock-message"
+        id="unlockMessage">
 
-        <div class="icon">
-            🎂
-        </div>
+        🎉 The surprise is ready! 🎉
 
-        <h1>
-            Happy Birthday!
-        </h1>
+    </div>
 
-        <p>
-            Wishing you a wonderful day filled with love,
-            laughter, and all your favorite things.
-            May this upcoming year bring you endless
-            joy and success!
-        </p>
+
+    <!-- CELEBRATE BUTTON -->
+
+    <button
+        class="btn"
+        id="celebrateBtn"
+        onclick="playBirthdayVideo()"
+        disabled>
+
+        🔒 Celebrate! 🎉
+
+    </button>
+
+</div>
+
+
+<!-- =====================================
+     VIDEO POPUP
+====================================== -->
+
+<div
+    class="video-overlay"
+    id="videoOverlay">
+
+    <div class="video-container">
 
         <button
-            class="btn"
-            id="celebrateBtn"
-            onclick="playBirthdayVideo()">
+            class="close-video"
+            onclick="closeBirthdayVideo()">
 
-            Celebrate! 🎉
+            ×
 
         </button>
 
-    </div>
+
+        <video
+            id="birthdayVideo"
+            class="birthday-video"
+            controls
+            playsinline
+            preload="metadata">
+
+            <source
+                src="Messenger_creation_489319142569524.mp4"
+                type="video/mp4">
+
+            Your browser does not support
+            HTML5 video.
+
+        </video>
 
 
+        <!-- TULIPS SURPRISE -->
 
-    <!-- =====================================
-         VIDEO POPUP
-    ====================================== -->
-
-    <div
-        class="video-overlay"
-        id="videoOverlay">
+        <div
+            class="tulips-message"
+            id="tulipsMessage">
 
 
-        <div class="video-container">
+            <div class="cute-character">
+
+                <div
+                    class="character-hair">
+                </div>
 
 
-            <!-- CLOSE BUTTON -->
-
-            <button
-                class="close-video"
-                onclick="closeBirthdayVideo()">
-
-                ×
-
-            </button>
-
-
-
-            <!-- =================================
-                 YOUR MP4 VIDEO
-
-                 Make sure the file is named:
-
-                 birthday.mp4
-
-                 and is in the SAME folder
-                 as this index.html file.
-            ================================== -->
-
-            <video
-                id="birthdayVideo"
-                class="birthday-video"
-                controls
-                playsinline
-                preload="metadata">
-
-                <source
-                    src="Messenger_creation_489319142569524.mp4"
-                    type="video/mp4">
-
-                Your browser does not support
-                HTML5 video.
-
-            </video>
-
-
-
-            <!-- =================================
-                 TULIPS SURPRISE
-
-                 This is hidden initially.
-                 It appears when the video ends.
-            ================================== -->
-
-            <div
-                class="tulips-message"
-                id="tulipsMessage">
-
-
-                <!-- CUTE CHARACTER -->
-
-                <div class="cute-character">
-
-
-                    <!-- Hair -->
+                <div
+                    class="character-head">
 
                     <div
-                        class="character-hair">
-                    </div>
-
-
-                    <!-- Head -->
-
-                    <div
-                        class="character-head">
-
-
-                        <!-- Eyes -->
-
-                        <div
-                            class="eye left">
-                        </div>
-
-                        <div
-                            class="eye right">
-                        </div>
-
-
-                        <!-- Smile -->
-
-                        <div
-                            class="smile">
-                        </div>
-
-                    </div>
-
-
-                    <!-- Body -->
-
-                    <div
-                        class="character-body">
-                    </div>
-
-
-                    <!-- Arms -->
-
-                    <div
-                        class="arm-left">
+                        class="eye left">
                     </div>
 
                     <div
-                        class="arm-right">
+                        class="eye right">
                     </div>
 
-
-                    <!-- Tulips -->
-
-                    <div class="tulips">
-
-                        <span class="tulip">
-                            🌷
-                        </span>
-
-                        <span class="tulip">
-                            🌷
-                        </span>
-
-                        <span class="tulip">
-                            🌷
-                        </span>
-
-                        <span class="tulip">
-                            🌷
-                        </span>
-
+                    <div
+                        class="smile">
                     </div>
-
 
                 </div>
 
 
-                <!-- MESSAGE -->
+                <div
+                    class="character-body">
+                </div>
 
-                <h2>
-                    🌷 A little surprise for you! 🌷
-                </h2>
 
-                <p>
-                    Happy Birthday! 💕<br>
-                    You deserve all the happiness in the world!
-                </p>
+                <div
+                    class="arm-left">
+                </div>
 
+                <div
+                    class="arm-right">
+                </div>
+
+
+                <div class="tulips">
+
+                    <span class="tulip">
+                        🌷
+                    </span>
+
+                    <span class="tulip">
+                        🌷
+                    </span>
+
+                    <span class="tulip">
+                        🌷
+                    </span>
+
+                    <span class="tulip">
+                        🌷
+                    </span>
+
+                </div>
 
             </div>
 
+
+            <h2>
+                🌷 A little surprise for you! 🌷
+            </h2>
+
+            <p>
+                Happy Birthday! 💕<br>
+                You deserve all the happiness in the world!
+            </p>
 
         </div>
 
     </div>
 
+</div>
 
 
-    <!-- =====================================
-         JAVASCRIPT
-    ====================================== -->
+<!-- =====================================
+     JAVASCRIPT
+====================================== -->
 
-    <script>
+<script>
 
+    const videoOverlay =
+        document.getElementById("videoOverlay");
 
-        const videoOverlay =
-            document.getElementById("videoOverlay");
+    const birthdayVideo =
+        document.getElementById("birthdayVideo");
 
+    const celebrateBtn =
+        document.getElementById("celebrateBtn");
 
-        const birthdayVideo =
-            document.getElementById("birthdayVideo");
+    const tulipsMessage =
+        document.getElementById("tulipsMessage");
 
+    const countdown =
+        document.getElementById("countdown");
 
-        const celebrateBtn =
-            document.getElementById("celebrateBtn");
+    const countdownTitle =
+        document.getElementById("countdownTitle");
 
-
-        const tulipsMessage =
-            document.getElementById("tulipsMessage");
-
-
-
-        /* =====================================
-           PLAY VIDEO
-        ====================================== */
-
-        function playBirthdayVideo() {
+    const unlockMessage =
+        document.getElementById("unlockMessage");
 
 
-            // Hide tulips in case
-            // user plays the video again
+    /* =====================================
+       TARGET DATE
 
-            tulipsMessage
-                .classList
-                .remove("show");
+       September 25, 2026
+       12:00 AM
+       UTC+8
 
+       This means:
+       Sept 25, 2026 00:00
+       Philippine / Singapore time.
+    ====================================== */
 
-            birthdayVideo.style.display =
-                "block";
-
-
-            // Show popup
-
-            videoOverlay
-                .classList
-                .add("show");
+    const targetDate =
+        new Date("2026-09-25T00:00:00+08:00").getTime();
 
 
-            // Start from beginning
+    /* =====================================
+       COUNTDOWN
+    ====================================== */
 
-            birthdayVideo.currentTime =
-                0;
+    function updateCountdown() {
 
+        const now =
+            new Date().getTime();
 
-            // Play video
-
-            birthdayVideo
-                .play()
-                .then(function () {
-
-                    celebrateBtn.innerText =
-                        "Playing 🎬";
-
-                })
-                .catch(function (error) {
-
-                    console.log(
-                        "Video playback failed:",
-                        error
-                    );
-
-                });
-
-        }
+        const distance =
+            targetDate - now;
 
 
+        /* ==============================
+           TIME HAS ARRIVED
+        ============================== */
 
-        /* =====================================
-           VIDEO FINISHED
-        ====================================== */
+        if (distance <= 0) {
 
-        birthdayVideo.addEventListener(
-            "ended",
-            function () {
+            document.getElementById("days")
+                .innerText = "00";
 
+            document.getElementById("hours")
+                .innerText = "00";
 
-                // Hide video
+            document.getElementById("minutes")
+                .innerText = "00";
 
-                birthdayVideo.style.display =
-                    "none";
-
-
-                // Show tulips character
-
-                tulipsMessage
-                    .classList
-                    .add("show");
+            document.getElementById("seconds")
+                .innerText = "00";
 
 
-                // Change button text
-
-                celebrateBtn.innerText =
-                    "Celebrate Again! 🎉";
-
-            }
-        );
+            countdown.style.display =
+                "none";
 
 
-
-        /* =====================================
-           CLOSE VIDEO
-        ====================================== */
-
-        function closeBirthdayVideo() {
+            countdownTitle.style.display =
+                "none";
 
 
-            birthdayVideo.pause();
+            unlockMessage.classList.add("show");
 
 
-            birthdayVideo.currentTime =
-                0;
+            /* UNLOCK BUTTON */
 
-
-            birthdayVideo.style.display =
-                "block";
-
-
-            tulipsMessage
-                .classList
-                .remove("show");
-
-
-            videoOverlay
-                .classList
-                .remove("show");
-
+            celebrateBtn.disabled =
+                false;
 
             celebrateBtn.innerText =
                 "Celebrate! 🎉";
 
+
+            return;
+
         }
 
 
+        /* ==============================
+           CALCULATE TIME
+        ============================== */
 
-        /* =====================================
-           CLICK OUTSIDE VIDEO
-        ====================================== */
-
-        videoOverlay.addEventListener(
-            "click",
-            function(event) {
+        const days =
+            Math.floor(
+                distance /
+                (1000 * 60 * 60 * 24)
+            );
 
 
-                if (
-                    event.target === videoOverlay
-                ) {
+        const hours =
+            Math.floor(
+                (distance %
+                    (1000 * 60 * 60 * 24))
+                /
+                (1000 * 60 * 60)
+            );
 
-                    closeBirthdayVideo();
 
-                }
+        const minutes =
+            Math.floor(
+                (distance %
+                    (1000 * 60 * 60))
+                /
+                (1000 * 60)
+            );
 
-            }
+
+        const seconds =
+            Math.floor(
+                (distance %
+                    (1000 * 60))
+                /
+                1000
+            );
+
+
+        /* ==============================
+           DISPLAY
+        ============================== */
+
+        document.getElementById("days")
+            .innerText =
+            String(days).padStart(2, "0");
+
+
+        document.getElementById("hours")
+            .innerText =
+            String(hours).padStart(2, "0");
+
+
+        document.getElementById("minutes")
+            .innerText =
+            String(minutes).padStart(2, "0");
+
+
+        document.getElementById("seconds")
+            .innerText =
+            String(seconds).padStart(2, "0");
+
+    }
+
+
+    /* Run immediately */
+
+    updateCountdown();
+
+
+    /* Update every second */
+
+    const countdownInterval =
+        setInterval(
+            updateCountdown,
+            1000
         );
 
 
+    /* =====================================
+       PLAY VIDEO
+    ====================================== */
 
-        /* =====================================
-           ESC KEY
-        ====================================== */
+    function playBirthdayVideo() {
 
-        document.addEventListener(
-            "keydown",
-            function(event) {
+        /*
+         * Extra safety:
+         * Do not allow video before
+         * the target date.
+         */
+
+        const now =
+            new Date().getTime();
 
 
-                if (
-                    event.key === "Escape"
-                ) {
+        if (now < targetDate) {
 
-                    closeBirthdayVideo();
+            return;
 
-                }
+        }
+
+
+        /* Hide tulips if replaying */
+
+        tulipsMessage
+            .classList
+            .remove("show");
+
+
+        birthdayVideo.style.display =
+            "block";
+
+
+        videoOverlay
+            .classList
+            .add("show");
+
+
+        birthdayVideo.currentTime =
+            0;
+
+
+        birthdayVideo
+            .play()
+            .then(function () {
+
+                celebrateBtn.innerText =
+                    "Playing 🎬";
+
+            })
+            .catch(function (error) {
+
+                console.log(
+                    "Video playback failed:",
+                    error
+                );
+
+            });
+
+    }
+
+
+    /* =====================================
+       VIDEO FINISHED
+    ====================================== */
+
+    birthdayVideo.addEventListener(
+        "ended",
+        function() {
+
+            birthdayVideo.style.display =
+                "none";
+
+
+            tulipsMessage
+                .classList
+                .add("show");
+
+
+            celebrateBtn.innerText =
+                "Celebrate Again! 🎉";
+
+        }
+    );
+
+
+    /* =====================================
+       CLOSE VIDEO
+    ====================================== */
+
+    function closeBirthdayVideo() {
+
+        birthdayVideo.pause();
+
+        birthdayVideo.currentTime =
+            0;
+
+        birthdayVideo.style.display =
+            "block";
+
+        tulipsMessage
+            .classList
+            .remove("show");
+
+        videoOverlay
+            .classList
+            .remove("show");
+
+
+        /*
+         * Keep button unlocked after
+         * September 25.
+         */
+
+        celebrateBtn.innerText =
+            "Celebrate Again! 🎉";
+
+    }
+
+
+    /* =====================================
+       CLICK OUTSIDE VIDEO
+    ====================================== */
+
+    videoOverlay.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === videoOverlay
+            ) {
+
+                closeBirthdayVideo();
 
             }
-        );
 
-    </script>
+        }
+    );
+
+
+    /* =====================================
+       ESC KEY
+    ====================================== */
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeBirthdayVideo();
+
+            }
+
+        }
+    );
+
+</script>
 
 </body>
 </html>
